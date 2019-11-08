@@ -2,6 +2,7 @@ const db = require("./data/db-config");
 
 module.exports = {
   getProjects,
+  getProjectsByID,
   getTasks,
   getResources,
   insertProject,
@@ -16,11 +17,11 @@ module.exports = {
 };
 
 function getProjects() {
-  //   if (id === null) {
   return db("projects");
-  //   } else {
-  //     return db("projects").where("project_id", "=", id);
-  //   }
+}
+
+function getProjectsByID(id) {
+  return db("projects").where("id", "=", id);
 }
 
 function getTasks(project_id) {
@@ -46,16 +47,14 @@ function getResources(project_id) {
 function insertProject(project) {
   return db("projects")
     .insert(project)
-    .then(ids => {
-      return getById(ids[0]);
-    });
+    .then();
 }
 
 function updateProject(id, changes) {
   return db("projects")
     .where("id", id)
     .update(changes)
-    .then(count => (count > 0 ? this.get(id) : null));
+    .then(count => (count > 0 ? this.getProjectsByID(id) : null));
 }
 
 function removeProject(id) {
@@ -66,14 +65,14 @@ function removeProject(id) {
 function insertTask(task) {
   return db("tasks")
     .insert(task)
-    .then(([id]) => this.get(id));
+    .then();
 }
 
 function updateTask(id, changes) {
   return db("tasks")
     .where("id", id)
     .update(changes)
-    .then(count => (count > 0 ? this.get(id) : null));
+    .then(count => (count > 0 ? this.getProjectsByID(id) : null));
 }
 
 function removeTask(id) {
@@ -84,14 +83,14 @@ function removeTask(id) {
 function insertResource(resource) {
   return db("resources")
     .insert(resource)
-    .then(([id]) => this.get(id));
+    .then();
 }
 
 function updateResource(id, changes) {
   return db("resources")
     .where("id", id)
     .update(changes)
-    .then(count => (count > 0 ? this.get(id) : null));
+    .then(count => (count > 0 ? this.getProjectsByID(id) : null));
 }
 
 function removeResource(id) {

@@ -35,7 +35,7 @@ server.get("/api/projects", (req, res) => {
 
 server.get("/api/projects/:id", (req, res) => {
   project
-    .getProjects(req.params.id)
+    .getProjectsByID(req.params.id)
     .then(db => {
       res.status(200).json(db);
     })
@@ -72,7 +72,7 @@ server.get("/api/projects/:id/resources", (req, res) => {
 });
 server.post("/api/projects", (req, res) => {
   project
-    .insertProject(req.params.body)
+    .insertProject(req.body)
     .then(db => {
       res.status(200).json(db);
     })
@@ -85,7 +85,7 @@ server.post("/api/projects", (req, res) => {
 });
 server.post("/api/tasks", (req, res) => {
   project
-    .insertTask()
+    .insertTask(req.body)
     .then(db => {
       res.status(200).json(db);
     })
@@ -97,7 +97,7 @@ server.post("/api/tasks", (req, res) => {
 });
 server.post("/api/resources", (req, res) => {
   project
-    .insertResource()
+    .insertResource(req.body)
     .then(db => {
       res.status(200).json(db);
     })
@@ -114,6 +114,7 @@ server.put("/api/projects/:id", (req, res) => {
       res.status(200).json(db);
     })
     .catch(err => {
+      console.log(err);
       res
         .status(500)
         .json({ message: "I really hope I don't see this message" });
