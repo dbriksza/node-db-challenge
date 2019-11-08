@@ -15,7 +15,7 @@ module.exports = {
   removeResource
 };
 
-function getProjects(id) {
+function getProjects() {
   //   if (id === null) {
   return db("projects");
   //   } else {
