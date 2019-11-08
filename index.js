@@ -52,6 +52,7 @@ server.get("/api/projects/:id/tasks", (req, res) => {
       res.status(200).json(db);
     })
     .catch(err => {
+      console.log(err);
       res
         .status(500)
         .json({ message: "I really hope I don't see this message" });
@@ -71,11 +72,12 @@ server.get("/api/projects/:id/resources", (req, res) => {
 });
 server.post("/api/projects", (req, res) => {
   project
-    .insertProject()
+    .insertProject(req.params.body)
     .then(db => {
       res.status(200).json(db);
     })
     .catch(err => {
+      console.log(err);
       res
         .status(500)
         .json({ message: "I really hope I don't see this message" });

@@ -24,9 +24,9 @@ function getProjects() {
 }
 
 function getTasks(project_id) {
-  return db("project_tasks as ri")
-    .join("tasks as i", "i.id", "ri.task_id")
-    .join("projects as r", "r.id", "ri.project_id")
+  return db("tasks as ri")
+    .join("tasks as i", "i.id", "ri.id")
+    .join("projects as r", "r.id", "ri.id")
     .where("ri.project_id", "=", project_id)
     .select("i.desription", "i.notes", "i.completed");
 }
@@ -35,9 +35,9 @@ function getResources(project_id) {
   if (project_id === null) {
     return db("resources");
   } else {
-    return db("project_resources as ri")
-      .join("resources as i", "i.id", "ri.resource_id")
-      .join("projects as r", "r.id", "ri.project_id")
+    return db("resources as ri")
+      .join("resources as i", "i.id", "ri.id")
+      .join("projects as r", "r.id", "ri.id")
       .where("ri.project_id", "=", project_id)
       .select("i.resource_name", "i.desription");
   }
@@ -46,7 +46,9 @@ function getResources(project_id) {
 function insertProject(project) {
   return db("projects")
     .insert(project)
-    .then(([id]) => this.get(id));
+    .then(ids => {
+      return getById(ids[0]);
+    });
 }
 
 function updateProject(id, changes) {
