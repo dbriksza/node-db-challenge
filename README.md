@@ -40,11 +40,19 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
 
+Realtional Databases are a way of organizing data on a backend server and SQL is a method of storing that data
+
 - [ ] Why do tables need a `primary key`?
+
+Tables need a primary key so objects in the table can be differentiated from one another
 
 - [ ] What is the name given to a table column that references the primary key on another table.
 
+A foreign key
+
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+
+A tertiary table that has 2 foreign keys linking each 'many' to it
 
 ## Minimum Viable Product
 
