@@ -3,11 +3,13 @@ const helmet = require("helmet");
 const cors = require("cors");
 const project = require("./project-model");
 
-const server = express;
+const server = express();
 
 server.use(express.json());
 server.use(helmet());
 server.use(cors());
+
+const port = 4040;
 
 server.listen(port, () =>
   console.log(`\n[[[ server listening on ${port} ]]]\n`)

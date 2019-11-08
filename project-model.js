@@ -16,11 +16,11 @@ module.exports = {
 };
 
 function getProjects(id) {
-  if (id === null) {
-    return db("projects");
-  } else {
-    return db("projects").where("project_id", "=", id);
-  }
+  //   if (id === null) {
+  return db("projects");
+  //   } else {
+  //     return db("projects").where("project_id", "=", id);
+  //   }
 }
 
 function getTasks(project_id) {
